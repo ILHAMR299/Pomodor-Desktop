@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainContainer" styleClass="root" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.focusmaxxing.controller.MainDashboardController">
+    <!-- Top Area for User Info/Title -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);">
+            <Label text="FocusMaxxing" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #78a890;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userGreetingLabel" text="Hello, User" style="-fx-text-fill: #666;"/>
+            <Button text="Logout" style="-fx-background-color: transparent; -fx-text-fill: #e57373; -fx-cursor: hand;" onAction="#handleLogout"/>
+        </HBox>
+    </top>
+
+    <!-- Center Area where different views (Timer, Tasks, Stats) will be loaded -->
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-padding: 30;"/>
+    </center>
+
+    <!-- Bottom Navigation Bar -->
+    <bottom>
+        <HBox alignment="CENTER" styleClass="nav-bar">
+            <Button fx:id="btnTimer" text="Timer" styleClass="nav-button-active" onAction="#showTimer"/>
+            <Button fx:id="btnTasks" text="Tasks" styleClass="nav-button" onAction="#showTasks"/>
+            <Button fx:id="btnStats" text="Statistics" styleClass="nav-button" onAction="#showStats"/>
+        </HBox>
+    </bottom>
+</BorderPane>

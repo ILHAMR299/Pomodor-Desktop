@@ -1,0 +1,187 @@
+/* Soft Green Theme - Modern Minimalist */
+
+.root {
+    -fx-background-color: #f4f9f4; /* Soft green-white background */
+    -fx-font-family: 'Segoe UI', 'Inter', sans-serif;
+}
+
+/* Rounded Cards */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 15, 0, 0, 5);
+    -fx-padding: 30;
+}
+
+/* Primary Button (Soft Green) */
+.button-primary {
+    -fx-background-color: #78a890;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 20;
+    -fx-padding: 10 25 10 25;
+    -fx-cursor: hand;
+}
+.button-primary:hover {
+    -fx-background-color: #65927b;
+}
+
+/* Navigation Buttons */
+.nav-button {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 20;
+    -fx-padding: 10 25 10 25;
+    -fx-cursor: hand;
+}
+.nav-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+.nav-button-active {
+    -fx-background-color: #78a890;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 20;
+    -fx-padding: 10 25 10 25;
+    -fx-cursor: hand;
+}
+.nav-button-active:hover {
+    -fx-background-color: #65927b;
+}
+
+/* Danger/Skip Button */
+.button-danger {
+    -fx-background-color: #e57373;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 20;
+    -fx-padding: 10 25 10 25;
+    -fx-cursor: hand;
+}
+.button-danger:hover {
+    -fx-background-color: #d32f2f;
+}
+
+/* Timer Text */
+.timer-label {
+    -fx-font-size: 80px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a5c50;
+}
+
+/* Bottom Navigation Bar */
+.nav-bar {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 15;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+
+/* Text Fields for Login/Register */
+.text-field-custom {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 10;
+    -fx-padding: 12;
+    -fx-border-color: transparent;
+    -fx-font-size: 14px;
+}
+.text-field-custom:focused {
+    -fx-border-color: #78a890;
+    -fx-border-radius: 10;
+    -fx-background-color: white;
+}
+
+/* Chart Styles (legacy AreaChart) */
+.chart-series-area-fill {
+    -fx-fill: rgba(120, 168, 144, 0.4);
+}
+.chart-series-area-line {
+    -fx-stroke: #78a890;
+    -fx-stroke-width: 3px;
+}
+.chart-line-symbol {
+    -fx-background-color: #78a890, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Statistics: Summary Cards */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.07), 10, 0, 0, 3);
+    -fx-padding: 18 15 18 15;
+}
+
+/* Bar Chart bars */
+.default-color0.chart-bar {
+    -fx-bar-fill: #78a890;
+}
+
+/* Bar Chart general */
+.bar-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+.bar-chart .chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+.bar-chart .chart-horizontal-grid-lines {
+    -fx-stroke: #e8f0eb;
+    -fx-stroke-dash-array: 4 4;
+}
+
+/* Line Chart */
+.line-chart .chart-series-line {
+    -fx-stroke: #5b8a6e;
+    -fx-stroke-width: 2.5px;
+}
+.line-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+.line-chart .chart-horizontal-grid-lines {
+    -fx-stroke: #e8f0eb;
+    -fx-stroke-dash-array: 4 4;
+}
+.line-chart .chart-vertical-grid-lines {
+    -fx-stroke: transparent;
+}
+.default-color0.chart-line-symbol {
+    -fx-background-color: #5b8a6e, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* ─── Multimedia / Popup Additions ─────────────────────────────────────── */
+
+/* Progress GIF outer frame (ProgressGifComponent) */
+.gif-frame {
+    -fx-background-color: #eef6f1;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(three-pass-box, rgba(120,168,144,0.35), 16, 0, 0, 4);
+    -fx-padding: 12;
+}
+
+/* Popup dialog card (used by PopupDialog inline style, mirrors .card) */
+.popup-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.18), 20, 0, 0, 6);
+    -fx-padding: 30;
+}
+
+/* GIF inner frame inside popup */
+.popup-gif-frame {
+    -fx-background-color: #f4f9f4;
+    -fx-background-radius: 14;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(120,168,144,0.25), 12, 0, 0, 3);
+}

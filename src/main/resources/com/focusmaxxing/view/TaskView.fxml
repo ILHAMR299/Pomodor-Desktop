@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox spacing="20" styleClass="root" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.focusmaxxing.controller.TaskController">
+    <Label text="Your Tasks" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
+    
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <TextField fx:id="taskTitleField" promptText="Enter a new task..." styleClass="text-field-custom" HBox.hgrow="ALWAYS" />
+        <ComboBox fx:id="priorityComboBox" promptText="Priority" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 3;"/>
+        <Button text="Add Task" styleClass="button-primary" onAction="#handleAddTask"/>
+    </HBox>
+    
+    <TableView fx:id="taskTable" VBox.vgrow="ALWAYS" styleClass="card" style="-fx-background-radius: 10;">
+        <columns>
+            <TableColumn fx:id="titleColumn" text="Task Title" prefWidth="350">
+                <cellValueFactory><PropertyValueFactory property="title"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="priorityColumn" text="Priority" prefWidth="120">
+                <cellValueFactory><PropertyValueFactory property="priority"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="statusColumn" text="Completed" prefWidth="100">
+                <cellValueFactory><PropertyValueFactory property="completed"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn fx:id="actionColumn" text="Actions" prefWidth="180"/>
+        </columns>
+    </TableView>
+</VBox>

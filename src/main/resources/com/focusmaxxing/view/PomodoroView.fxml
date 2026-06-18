@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox alignment="CENTER" spacing="20" styleClass="root"
+      stylesheets="@../css/styles.css"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.focusmaxxing.controller.PomodoroController">
+
+    <VBox alignment="CENTER" styleClass="card" spacing="15" maxWidth="600">
+
+        <!-- Session type label -->
+        <Label fx:id="sessionTypeLabel" text="Focus Session"
+               style="-fx-font-size: 24; -fx-text-fill: #78a890; -fx-font-weight: bold;"/>
+
+        <!-- Task selector -->
+        <ComboBox fx:id="taskComboBox"
+                  promptText="Select a Task to Focus On..."
+                  style="-fx-background-color: #f5f5f5; -fx-background-radius: 10; -fx-padding: 5;"
+                  minWidth="250"/>
+
+        <!--
+          timerAreaHBox: timer circle on the left, ProgressGifComponent injected on the right.
+          When GIF is hidden (setManaged=false), timer stays centred.
+        -->
+        <HBox fx:id="timerAreaHBox" alignment="CENTER" spacing="28">
+
+            <!-- Timer circle + countdown label -->
+            <StackPane fx:id="timerPane">
+                <Circle radius="130" fill="transparent" stroke="#e0e0e0" strokeWidth="8"/>
+                <Circle fx:id="progressCircle" radius="130" fill="transparent"
+                        stroke="#78a890" strokeWidth="8" strokeDashArray="10, 10"/>
+                <Label fx:id="timerLabel" text="25:00" styleClass="timer-label"/>
+            </StackPane>
+
+        </HBox>
+
+        <!-- Action buttons -->
+        <HBox fx:id="buttonRow" alignment="CENTER" spacing="15"
+              style="-fx-padding: 10 0 0 0;">
+
+            <Button fx:id="startPauseButton" text="Start"
+                    styleClass="button-primary"
+                    onAction="#toggleTimer"
+                    minWidth="100"/>
+
+            <Button text="Stop"
+                    style="-fx-background-color: #ffb74d; -fx-text-fill: white;
+                           -fx-font-weight: bold; -fx-font-size: 14px;
+                           -fx-background-radius: 20; -fx-padding: 10 25 10 25;
+                           -fx-cursor: hand;"
+                    onAction="#stopTimer"
+                    minWidth="100"/>
+
+            <Button text="Skip"
+                    styleClass="button-danger"
+                    onAction="#skipSession"
+                    minWidth="100"/>
+
+        </HBox>
+
+    </VBox>
+</VBox>

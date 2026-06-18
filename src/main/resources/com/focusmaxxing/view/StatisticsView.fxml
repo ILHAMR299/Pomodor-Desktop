@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" styleClass="root" stylesheets="@../css/styles.css"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.focusmaxxing.controller.StatisticsController">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="📊 Focus Statistics" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="⟳ Refresh" styleClass="nav-button" onAction="#refreshChart"/>
+        <Button text="Export PDF" styleClass="button-primary" onAction="#exportPdfReport"/>
+    </HBox>
+
+    <!-- Summary Cards Row -->
+    <HBox spacing="15">
+        <!-- Card: Today's Focus -->
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="6">
+            <Label text="Today's Focus" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
+            <Label fx:id="todayMinutesLabel" text="0 min" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #78a890;"/>
+            <Label fx:id="todaySessionsLabel" text="0 sessions" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
+        </VBox>
+
+        <!-- Card: Total Focus All Time -->
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="6">
+            <Label text="Total Focus" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
+            <Label fx:id="totalMinutesLabel" text="0 min" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #5b8a6e;"/>
+            <Label fx:id="totalDaysLabel" text="0 active days" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
+        </VBox>
+
+        <!-- Card: Tasks Completed -->
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="6">
+            <Label text="Tasks Done" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
+            <Label fx:id="tasksCompletedLabel" text="0" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #7aab96;"/>
+            <Label text="total completed" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
+        </VBox>
+
+        <!-- Card: Best Day -->
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="6">
+            <Label text="Best Day" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
+            <Label fx:id="bestDayMinutesLabel" text="0 min" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #4a8c68;"/>
+            <Label fx:id="bestDayDateLabel" text="-" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Charts Row -->
+    <HBox spacing="15" VBox.vgrow="ALWAYS">
+
+        <!-- Bar Chart: Daily Focus Minutes -->
+        <VBox styleClass="card" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" spacing="8">
+            <Label text="Daily Focus (minutes)" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
+            <BarChart fx:id="focusBarChart" legendVisible="false" animated="false"
+                      VBox.vgrow="ALWAYS" barGap="3" categoryGap="12">
+                <xAxis><CategoryAxis label="Date"/></xAxis>
+                <yAxis><NumberAxis label="Minutes" minorTickVisible="false"/></yAxis>
+            </BarChart>
+        </VBox>
+
+        <!-- Line Chart: Tasks Completed per Day -->
+        <VBox styleClass="card" prefWidth="260" spacing="8">
+            <Label text="Tasks Completed per Day" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
+            <LineChart fx:id="tasksLineChart" legendVisible="false" animated="false"
+                       VBox.vgrow="ALWAYS" createSymbols="true">
+                <xAxis><CategoryAxis label="Date"/></xAxis>
+                <yAxis><NumberAxis label="Tasks" minorTickVisible="false"/></yAxis>
+            </LineChart>
+        </VBox>
+
+    </HBox>
+</VBox>
