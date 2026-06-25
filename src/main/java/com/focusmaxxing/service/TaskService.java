@@ -29,7 +29,7 @@ public class TaskService {
 
     public Task addTask(String title, String description, Priority priority) {
         if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Task title cannot be empty");
+            throw new IllegalArgumentException("Judul tugas tidak boleh kosong");
         }
         User user = getLoggedInUser();
         
@@ -48,14 +48,14 @@ public class TaskService {
         if (taskOpt.isPresent()) {
             Task task = taskOpt.get();
             if (!task.getUserId().equals(getLoggedInUser().getId())) {
-                throw new SecurityException("Cannot edit task of another user");
+                throw new SecurityException("Tidak bisa mengubah tugas milik pengguna lain");
             }
             task.setTitle(title);
             task.setDescription(description);
             task.setPriority(priority);
             return taskRepository.save(task);
         }
-        throw new IllegalArgumentException("Task not found");
+        throw new IllegalArgumentException("Tugas tidak ditemukan");
     }
 
     public void completeTask(int taskId) {
@@ -63,7 +63,7 @@ public class TaskService {
         if (taskOpt.isPresent()) {
             Task task = taskOpt.get();
             if (!task.getUserId().equals(getLoggedInUser().getId())) {
-                throw new SecurityException("Cannot complete task of another user");
+                throw new SecurityException("Tidak bisa menyelesaikan tugas milik pengguna lain");
             }
             if (!task.isCompleted()) {
                 task.setCompleted(true);
@@ -72,7 +72,7 @@ public class TaskService {
                 pomodoroService.incrementTaskCompleted();
             }
         } else {
-            throw new IllegalArgumentException("Task not found");
+            throw new IllegalArgumentException("Tugas tidak ditemukan");
         }
     }
 
@@ -84,7 +84,7 @@ public class TaskService {
         Optional<Task> taskOpt = taskRepository.findById(taskId);
         if (taskOpt.isPresent()) {
             if (!taskOpt.get().getUserId().equals(getLoggedInUser().getId())) {
-                throw new SecurityException("Cannot delete task of another user");
+                throw new SecurityException("Tidak bisa menghapus tugas milik pengguna lain");
             }
             taskRepository.delete(taskId);
         }

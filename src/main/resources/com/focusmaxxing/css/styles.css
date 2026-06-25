@@ -13,6 +13,100 @@
     -fx-padding: 30;
 }
 
+.timer-shell {
+    -fx-background-color: #f4f9f4;
+    -fx-padding: 38 30 38 30;
+    -fx-font-family: 'Segoe UI', 'Inter', sans-serif;
+}
+
+.timer-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-color: #e7f0eb;
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    -fx-padding: 30;
+    -fx-min-width: 560;
+    -fx-effect: dropshadow(three-pass-box, rgba(70,91,80,0.14), 20, 0, 0, 7);
+}
+
+.task-shortcut-frame {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f5fbf7);
+    -fx-background-radius: 18;
+    -fx-border-color: #dfeee5;
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+    -fx-effect: dropshadow(three-pass-box, rgba(72,105,88,0.10), 18, 0, 0, 6);
+    -fx-padding: 18;
+}
+
+.side-panel-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4a5c50;
+}
+
+.side-panel-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7d9186;
+}
+
+.mini-link-button {
+    -fx-background-color: #eef6f1;
+    -fx-text-fill: #5b8a6e;
+    -fx-font-weight: bold;
+    -fx-background-radius: 14;
+    -fx-padding: 7 12 7 12;
+    -fx-cursor: hand;
+}
+.mini-link-button:hover {
+    -fx-background-color: #dfeee5;
+}
+
+.task-shortcut-list {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 2;
+}
+.task-shortcut-list .list-cell {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #edf3ef;
+    -fx-border-radius: 12;
+    -fx-padding: 12 14 12 14;
+    -fx-text-fill: #435449;
+    -fx-font-size: 13px;
+}
+.task-shortcut-list .list-cell:filled {
+    -fx-cursor: hand;
+}
+.task-shortcut-list .list-cell:filled:hover {
+    -fx-background-color: #f0f8f3;
+}
+.task-shortcut-list .list-cell:filled:selected {
+    -fx-background-color: #78a890;
+    -fx-text-fill: white;
+}
+
+.duration-combo {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+}
+
+.period-toggle {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-background-radius: 18;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+}
+.period-toggle:selected {
+    -fx-background-color: #78a890;
+    -fx-text-fill: white;
+}
+
 /* Primary Button (Soft Green) */
 .button-primary {
     -fx-background-color: #78a890;

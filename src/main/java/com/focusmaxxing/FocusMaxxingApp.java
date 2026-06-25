@@ -28,7 +28,7 @@ public class FocusMaxxingApp extends Application {
         }
         
         Parent root = FXMLLoader.load(fxmlLocation);
-        Scene scene = new Scene(root, 400, 500);
+        Scene scene = new Scene(root, 800, 500);
 
         primaryStage.setTitle("FocusMaxxing - Login");
         primaryStage.setScene(scene);

@@ -17,6 +17,15 @@ public class TaskController {
 
     private TaskService taskService;
     private ObservableList<Task> masterData;
+    private Runnable onTaskDataChanged;
+
+    public void setOnTaskDataChanged(Runnable onTaskDataChanged) {
+        this.onTaskDataChanged = onTaskDataChanged;
+    }
+
+    private void notifyTaskDataChanged() {
+        if (onTaskDataChanged != null) onTaskDataChanged.run();
+    }
 
     @FXML
     public void initialize() {
@@ -43,7 +52,7 @@ public class TaskController {
         Priority priority = priorityComboBox.getValue();
 
         if (title == null || title.trim().isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Warning", "Task title cannot be empty.");
+            showAlert(Alert.AlertType.WARNING, "Peringatan", "Judul tugas tidak boleh kosong.");
             return;
         }
 
@@ -52,15 +61,16 @@ public class TaskController {
             masterData.add(newTask);
             taskTitleField.clear();
             priorityComboBox.setValue(Priority.MEDIUM);
+            notifyTaskDataChanged();
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Kesalahan", e.getMessage());
         }
     }
 
     private void setupActionColumn() {
         actionColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button completeBtn = new Button("Done");
-            private final Button deleteBtn = new Button("Delete");
+            private final Button completeBtn = new Button("Selesai");
+            private final Button deleteBtn = new Button("Hapus");
             private final HBox pane = new HBox(10, completeBtn, deleteBtn);
 
             {
@@ -74,8 +84,9 @@ public class TaskController {
                             taskService.completeTask(task.getId());
                             task.setCompleted(true);
                             taskTable.refresh();
+                            notifyTaskDataChanged();
                         } catch (Exception e) {
-                            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+                            showAlert(Alert.AlertType.ERROR, "Kesalahan", e.getMessage());
                         }
                     }
                 });
@@ -85,8 +96,9 @@ public class TaskController {
                     try {
                         taskService.deleteTask(task.getId());
                         masterData.remove(task);
+                        notifyTaskDataChanged();
                     } catch (Exception e) {
-                        showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+                        showAlert(Alert.AlertType.ERROR, "Kesalahan", e.getMessage());
                     }
                 });
             }

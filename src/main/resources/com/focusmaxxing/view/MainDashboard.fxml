@@ -8,7 +8,7 @@
         <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 15; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);">
             <Label text="FocusMaxxing" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #78a890;"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="userGreetingLabel" text="Hello, User" style="-fx-text-fill: #666;"/>
+            <Label fx:id="userGreetingLabel" text="Halo, User" style="-fx-text-fill: #666;"/>
             <Button text="Logout" style="-fx-background-color: transparent; -fx-text-fill: #e57373; -fx-cursor: hand;" onAction="#handleLogout"/>
         </HBox>
     </top>
@@ -22,8 +22,8 @@
     <bottom>
         <HBox alignment="CENTER" styleClass="nav-bar">
             <Button fx:id="btnTimer" text="Timer" styleClass="nav-button-active" onAction="#showTimer"/>
-            <Button fx:id="btnTasks" text="Tasks" styleClass="nav-button" onAction="#showTasks"/>
-            <Button fx:id="btnStats" text="Statistics" styleClass="nav-button" onAction="#showStats"/>
+            <Button fx:id="btnTasks" text="Tugas" styleClass="nav-button" onAction="#showTasks"/>
+            <Button fx:id="btnStats" text="Statistik" styleClass="nav-button" onAction="#showStats"/>
         </HBox>
     </bottom>
 </BorderPane>

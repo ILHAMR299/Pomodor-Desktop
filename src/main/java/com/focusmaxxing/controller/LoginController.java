@@ -32,14 +32,14 @@ public class LoginController {
         String password = passwordField.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
-            errorLabel.setText("Please enter both username and password");
+            errorLabel.setText("Masukkan nama pengguna dan kata sandi");
             return;
         }
 
         try {
             if (authService.login(username, password)) {
                 errorLabel.setText("");
-                System.out.println("Login Success! Proceeding to Dashboard...");
+                System.out.println("Login berhasil. Membuka dashboard...");
                 // Swap the Scene to MainDashboard.fxml
                 Parent root = FXMLLoader.load(getClass().getResource("/com/focusmaxxing/view/MainDashboard.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -47,10 +47,10 @@ public class LoginController {
                 stage.setResizable(true); // Allow full screen for dashboard
                 stage.centerOnScreen();
             } else {
-                errorLabel.setText("Invalid username or password");
+                errorLabel.setText("Nama pengguna atau kata sandi salah");
             }
         } catch (Exception e) {
-            errorLabel.setText("Error during login: " + e.getMessage());
+            errorLabel.setText("Terjadi kesalahan saat login: " + e.getMessage());
         }
     }
 

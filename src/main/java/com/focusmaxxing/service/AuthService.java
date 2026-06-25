@@ -18,10 +18,10 @@ public class AuthService {
 
     public User register(String username, String plainPassword, Role role) {
         if (username == null || username.trim().isEmpty() || plainPassword == null || plainPassword.length() < 4) {
-            throw new IllegalArgumentException("Username cannot be empty and password must be at least 4 characters");
+            throw new IllegalArgumentException("Nama pengguna tidak boleh kosong dan kata sandi minimal 4 karakter");
         }
         if (userRepository.findByUsername(username).isPresent()) {
-            throw new IllegalArgumentException("Username already exists");
+            throw new IllegalArgumentException("Nama pengguna sudah digunakan");
         }
         
         String hashedPassword = BCrypt.hashpw(plainPassword, BCrypt.gensalt());

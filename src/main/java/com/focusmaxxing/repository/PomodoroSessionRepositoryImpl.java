@@ -46,7 +46,8 @@ public class PomodoroSessionRepositoryImpl implements PomodoroSessionRepository 
     @Override
     public PomodoroSession save(PomodoroSession session) {
         if (session.getId() == null) {
-            String sql = "INSERT INTO pomodoro_sessions (user_id, task_id, session_type, duration_minutes, started_at, completed_at, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO pomodoro_sessions (user_id, task_id, session_type, " +
+                    ", started_at, completed_at, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
             try (Connection conn = DatabaseConfig.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 

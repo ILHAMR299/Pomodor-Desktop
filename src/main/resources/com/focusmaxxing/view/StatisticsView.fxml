@@ -7,40 +7,37 @@
       xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.focusmaxxing.controller.StatisticsController">
 
-    <!-- Header -->
     <HBox alignment="CENTER_LEFT" spacing="15">
-        <Label text="📊 Focus Statistics" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
+        <Label text="Statistik Fokus" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
         <Region HBox.hgrow="ALWAYS"/>
-        <Button text="⟳ Refresh" styleClass="nav-button" onAction="#refreshChart"/>
-        <Button text="Export PDF" styleClass="button-primary" onAction="#exportPdfReport"/>
+        <ToggleButton fx:id="dailyToggle" text="Harian" styleClass="period-toggle"/>
+        <ToggleButton fx:id="weeklyToggle" text="Mingguan" styleClass="period-toggle"/>
+        <ToggleButton fx:id="monthlyToggle" text="Bulanan" styleClass="period-toggle"/>
+        <Button text="Segarkan" styleClass="nav-button" onAction="#refreshChart"/>
+        <Button text="Ekspor PDF" styleClass="button-primary" onAction="#exportPdfReport"/>
     </HBox>
 
-    <!-- Summary Cards Row -->
     <HBox spacing="15">
-        <!-- Card: Today's Focus -->
         <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="6">
-            <Label text="Today's Focus" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
+            <Label fx:id="periodFocusTitleLabel" text="Fokus Hari Ini" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
             <Label fx:id="todayMinutesLabel" text="0 min" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #78a890;"/>
-            <Label fx:id="todaySessionsLabel" text="0 sessions" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
+            <Label fx:id="todaySessionsLabel" text="0 sesi" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
         </VBox>
 
-        <!-- Card: Total Focus All Time -->
         <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="6">
-            <Label text="Total Focus" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
+            <Label text="Total Fokus" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
             <Label fx:id="totalMinutesLabel" text="0 min" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #5b8a6e;"/>
-            <Label fx:id="totalDaysLabel" text="0 active days" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
+            <Label fx:id="totalDaysLabel" text="0 hari aktif" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
         </VBox>
 
-        <!-- Card: Tasks Completed -->
         <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="6">
-            <Label text="Tasks Done" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
+            <Label text="Tugas Selesai" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
             <Label fx:id="tasksCompletedLabel" text="0" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #7aab96;"/>
-            <Label text="total completed" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
+            <Label fx:id="tasksCompletedCaptionLabel" text="selesai periode ini" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
         </VBox>
 
-        <!-- Card: Best Day -->
         <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="6">
-            <Label text="Best Day" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
+            <Label text="Hari Terbaik" style="-fx-font-size: 13; -fx-text-fill: #888;"/>
             <Label fx:id="bestDayMinutesLabel" text="0 min" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #4a8c68;"/>
             <Label fx:id="bestDayDateLabel" text="-" style="-fx-font-size: 12; -fx-text-fill: #aaa;"/>
         </VBox>
@@ -51,21 +48,20 @@
 
         <!-- Bar Chart: Daily Focus Minutes -->
         <VBox styleClass="card" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" spacing="8">
-            <Label text="Daily Focus (minutes)" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
+            <Label fx:id="focusChartTitleLabel" text="Fokus Harian (menit)" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
             <BarChart fx:id="focusBarChart" legendVisible="false" animated="false"
                       VBox.vgrow="ALWAYS" barGap="3" categoryGap="12">
-                <xAxis><CategoryAxis label="Date"/></xAxis>
-                <yAxis><NumberAxis label="Minutes" minorTickVisible="false"/></yAxis>
+                <xAxis><CategoryAxis label="Periode"/></xAxis>
+                <yAxis><NumberAxis label="Menit" minorTickVisible="false"/></yAxis>
             </BarChart>
         </VBox>
 
-        <!-- Line Chart: Tasks Completed per Day -->
         <VBox styleClass="card" prefWidth="260" spacing="8">
-            <Label text="Tasks Completed per Day" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
+            <Label fx:id="tasksChartTitleLabel" text="Tugas Selesai per Hari" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: #4a5c50;"/>
             <LineChart fx:id="tasksLineChart" legendVisible="false" animated="false"
                        VBox.vgrow="ALWAYS" createSymbols="true">
-                <xAxis><CategoryAxis label="Date"/></xAxis>
-                <yAxis><NumberAxis label="Tasks" minorTickVisible="false"/></yAxis>
+                <xAxis><CategoryAxis label="Periode"/></xAxis>
+                <yAxis><NumberAxis label="Tugas" minorTickVisible="false"/></yAxis>
             </LineChart>
         </VBox>
 

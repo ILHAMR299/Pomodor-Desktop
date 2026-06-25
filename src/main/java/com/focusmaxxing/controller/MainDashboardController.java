@@ -24,7 +24,9 @@ public class MainDashboardController {
     @FXML private Button     btnStats;
 
     private Node               pomodoroView;
+    private Node               taskView;
     private PomodoroController pomodoroController;
+    private TaskController taskController;
     private StatisticsController statisticsController;
 
     /**
@@ -37,7 +39,7 @@ public class MainDashboardController {
     public void initialize() {
         if (com.focusmaxxing.util.SessionManager.getInstance().getCurrentUser() != null) {
             userGreetingLabel.setText(
-                    "Hello, " + com.focusmaxxing.util.SessionManager.getInstance()
+                    "Halo, " + com.focusmaxxing.util.SessionManager.getInstance()
                             .getCurrentUser().getUsername());
         }
 
@@ -66,6 +68,7 @@ public class MainDashboardController {
                     if (statisticsController != null)
                         javafx.application.Platform.runLater(() -> statisticsController.refreshData());
                 });
+                pomodoroController.setOnOpenTasksRequested(this::showTasks);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -76,8 +79,21 @@ public class MainDashboardController {
 
     @FXML
     public void showTasks() {
-        loadView("/com/focusmaxxing/view/TaskView.fxml");
-        statisticsController = null;
+        if (taskView == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/com/focusmaxxing/view/TaskView.fxml"));
+                taskView = loader.load();
+                taskController = loader.getController();
+                taskController.setOnTaskDataChanged(() -> javafx.application.Platform.runLater(() -> {
+                    if (pomodoroController != null) pomodoroController.refreshTasks();
+                    if (statisticsController != null) statisticsController.refreshData();
+                }));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        contentArea.getChildren().setAll(taskView);
         updateNavButtons(btnTasks);
     }
 

@@ -36,13 +36,13 @@ public class RegisterController {
 
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             errorLabel.setStyle("-fx-text-fill: #e57373;");
-            errorLabel.setText("Please fill all fields");
+            errorLabel.setText("Lengkapi semua kolom");
             return;
         }
 
         if (!password.equals(confirmPassword)) {
             errorLabel.setStyle("-fx-text-fill: #e57373;");
-            errorLabel.setText("Passwords do not match");
+            errorLabel.setText("Kata sandi tidak cocok");
             return;
         }
 
@@ -50,7 +50,7 @@ public class RegisterController {
             // Default role for new signups is USER.
             authService.register(username, password, Role.USER);
             errorLabel.setStyle("-fx-text-fill: #78a890;");
-            errorLabel.setText("Registration successful! Please login.");
+            errorLabel.setText("Pendaftaran berhasil. Silakan login.");
             usernameField.clear();
             passwordField.clear();
             confirmPasswordField.clear();
@@ -59,7 +59,7 @@ public class RegisterController {
             errorLabel.setText(e.getMessage());
         } catch (Exception e) {
             errorLabel.setStyle("-fx-text-fill: #e57373;");
-            errorLabel.setText("Error during registration: " + e.getMessage());
+            errorLabel.setText("Terjadi kesalahan saat daftar: " + e.getMessage());
         }
     }
 
