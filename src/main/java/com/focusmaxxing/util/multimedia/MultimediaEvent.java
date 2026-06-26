@@ -47,6 +47,12 @@ public enum MultimediaEvent {
     TIMER_COMPLETE,
 
     /**
+     * Timer berhenti otomatis karena tidak ada aktivitas mouse selama batas waktu.
+     * Audio: tidak produktif.mp3 — popup khusus, terpisah dari TIMER_STOP.
+     */
+    TIMER_INACTIVITY_STOP,
+
+    /**
      * User pressed the Logout button.
      * Audio: PopUp.mp3.
      * Visual: Confirmation dialog "Apakah Anda yakin ingin logout?".

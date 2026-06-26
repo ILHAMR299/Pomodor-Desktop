@@ -47,6 +47,10 @@ public final class MediaEventHandler {
     private static final String GIF_DONE      =
             "/com/focusmaxxing/images/character/PomodoroDone.gif";
 
+    /** Gambar popup saat user tidak produktif / ketiduran. */
+    private static final String IMG_TIDAK_PRODUKTIF =
+            "/com/focusmaxxing/images/pop up/tidak produktif.jpg";
+
     // ─── Dependencies ─────────────────────────────────────────────────────────
     private final AudioPlayer audioPlayer;
     private final MultimediaEventBus eventBus;
@@ -59,6 +63,9 @@ public final class MediaEventHandler {
      * The boolean argument is {@code true} if the user confirmed logout.
      */
     private java.util.function.Consumer<Boolean> logoutConfirmedCallback;
+
+    /** Mencegah popup inactivity muncul beruntun jika event dipublish lebih dari sekali. */
+    private boolean inactivityPopupOpen = false;
 
     // ─── Constructor ──────────────────────────────────────────────────────────
 
@@ -105,6 +112,7 @@ public final class MediaEventHandler {
         eventBus.subscribe(MultimediaEvent.TIMER_STOP,     e -> onTimerStop());
         eventBus.subscribe(MultimediaEvent.TIMER_SKIP,     e -> onTimerSkip());
         eventBus.subscribe(MultimediaEvent.TIMER_COMPLETE, e -> onTimerComplete());
+        eventBus.subscribe(MultimediaEvent.TIMER_INACTIVITY_STOP, e -> onTimerInactivityStop());
         eventBus.subscribe(MultimediaEvent.LOGOUT_CONFIRM, e -> onLogoutConfirm());
     }
 
@@ -161,6 +169,25 @@ public final class MediaEventHandler {
     }
 
     /**
+     * TIMER_INACTIVITY_STOP:
+     * Popup khusus tidak produktif — tanpa click.wav agar tidak memicu popup stop/skip.
+     */
+    private void onTimerInactivityStop() {
+        if (inactivityPopupOpen) {
+            LOG.fine("Ignoring duplicate TIMER_INACTIVITY_STOP");
+            return;
+        }
+        LOG.fine("Handling TIMER_INACTIVITY_STOP");
+        updateGifState(TimerState.STOPPED);
+        inactivityPopupOpen = true;
+        try {
+            showInactivityPopup();
+        } finally {
+            inactivityPopupOpen = false;
+        }
+    }
+
+    /**
      * LOGOUT_CONFIRM:
      * 1. Show confirmation dialog with PopUp.mp3.
      * 2. Invoke {@link #logoutConfirmedCallback} with the user's choice.
@@ -211,6 +238,18 @@ public final class MediaEventHandler {
                 .audioClip(AudioPlayer.AudioClip.POMODORO_DONE)
                 .confirmText("Lanjutkan")
                 .gifSize(180, 180)
+                .build()
+                .showAndWait();
+    }
+
+    private void showInactivityPopup() {
+        new PopupDialog.Builder()
+                .title("Tidak Produktif")
+                .message("Yang bro rasakan setelah tidak produktif, BALIK PRODUKTIF SANA!!!!!!!!!!!!!!!")
+                .gifResourcePath(IMG_TIDAK_PRODUKTIF)
+                .audioClip(AudioPlayer.AudioClip.TIDAK_PRODUKTIF)
+                .confirmText("SIAP, SAYA AKAN KEMBALI PRODUKTIF")
+                .gifSize(220, 180)
                 .build()
                 .showAndWait();
     }

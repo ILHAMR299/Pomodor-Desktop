@@ -48,7 +48,8 @@ public final class AudioPlayer {
         CLICK       ("/com/focusmaxxing/sound/ui/click.wav"),
         POPUP       ("/com/focusmaxxing/sound/ui/PopUp.mp3"),
         STOP_SKIP   ("/com/focusmaxxing/sound/timer/stop&skip.wav"),
-        POMODORO_DONE("/com/focusmaxxing/sound/timer/pomodoroDone.mp3");
+        POMODORO_DONE("/com/focusmaxxing/sound/timer/pomodoroDone.mp3"),
+        TIDAK_PRODUKTIF("/com/focusmaxxing/sound/timer/tidak produktif.mp3");
 
         private final String resourcePath;
 

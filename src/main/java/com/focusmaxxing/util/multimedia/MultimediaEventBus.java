@@ -118,6 +118,7 @@ public final class MultimediaEventBus {
                 listener.accept(event);
             } catch (Exception ex) {
                 LOG.warning("Listener threw exception for event " + event + ": " + ex.getMessage());
+                ex.printStackTrace();
             }
         });
     }
